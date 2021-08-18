@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    }
+
+    body{
+    padding: 15px;
+    background-color: #f2f3f5;
+    }
+  .layui-card-header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #form1,#form2{
+        padding:20px 30px 0 0;
+    }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <span>遥感影像数据管理</span>
+            <button type="button" class="layui-btn layui-btn-normal layui-btn-sm" id="btnaddcate">添加影像</button>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-table">
+                <colgroup>
+                  <col>
+                  <col >
+                  <col width="200">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>影像名</th>
+                    <th>分辨率大小</th>
+                    <th>上传时间</th>
+                    <th>操作</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>22.tif</td>
+                    <td>400×400</td>
+                    <td>2021-8-15</td>
+                    <td>
+                        <button type="button" class="layui-btn layui-btn-xs" id="btnupdate" data-id="{{$value.Id}}">编辑</button>
+                        <button type="button" class="layui-btn layui-btn-xs  layui-btn-danger btn-delete" data-id="{{$value.Id}}">删除</button>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>              
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style>
+      *{
+    margin: 0;
+    padding: 0;
+      }
+      body{
+      background-color: #f2f3f5;
+      padding: 15px;
+
+        }
+      .layui-form-item{
+    width: 500px;
+      }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="layui-card">
+        <div class="layui-card-header">个人信息</div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="formuserinfo">
+    
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="nickname" required value="牛福儿" lay-verify="required|nickname" placeholder="请输入用户昵称" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">用户邮箱</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="email" required value="niu@qq.com" lay-verify="required|email" placeholder="请输入用户邮箱" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="email" required value="13366778899" lay-verify="required|phone"  placeholder="请输入用户邮箱" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button class="layui-btn" lay-submit lay-filter="formDemo">提交修改</button>
+                      <button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+                    </div>
+                  </div>
+            </form>
+        </div>
+        <div class="layui-card-header">修改密码</div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="" lay-filter="formuserinfo">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">原密码</label>
+                  <div class="layui-input-block">
+                    <input type="password" name="oldPwd" required  lay-verify="required|pass" placeholder="请输入原密码" autocomplete="off" class="layui-input" id="oldp" >
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-block">
+                      <input type="password" name="newPwd" required  lay-verify="required|pass|samepass" placeholder="请输入新密码" autocomplete="off" class="layui-input" id="newp">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">确认新密码</label>
+                    <div class="layui-input-block">
+                      <input type="password" name="repwd" required  lay-verify="required|pass|samepass2" placeholder="请确认新密码" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button class="layui-btn" lay-submit lay-filter="formDemo">修改密码</button>
+                      <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+                    </div>
+                  </div>
+            </form>
+        </div>
+      </div>
+      <script src="../layui/layui.all.js"></script>
+</body>
+</html>
