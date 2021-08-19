@@ -44,6 +44,27 @@
             height: 75vh;
 
         }
+        .fl{
+            position: relative;
+            top:17vh;
+            width: 10vw;
+            background-color: #8dcfee;
+           height: 360px;
+        }
+        
+        .fl ul li button{
+            height: 60px;
+            line-height: 60px;
+            width: 100%;
+            display: block;
+            border-top: 2px solid #51dd87;
+            border-left: 2px solid #51dd87;
+            border-right: 2px solid #51dd87;
+        }
+        .fl ul li:last-child{
+            
+            border-bottom: 2px solid #51dd87;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -53,17 +74,31 @@
             <span>空间分析</span>
         </div>
         <div class="layui-card-body">
+            
             <div class="row1">
+                
                 <!-- 要处理的图片 -->
-                <div class="pic1">
-                  
-                  <img id="image" src=" " />
+                <div >
+                  <span>原图像：</span>
+                 <div class="pic1"> <img id="image" src=" "></div>
                 </div>
                 <!-- 图片的处理结果 -->
-                <div class="pic2">
-                  <div>
-                    <img id="result" src=" " />
+                
+                <div>
+                 <span>处理后图像：</span>
+                  <div class="pic2">
+                    <img id="result" src=" ">
                   </div>
+                </div>
+                <div class="fl">
+                    <ul>
+                        <li ><button class="layui-btn layui-btn-normal" data-id="1">Level 1</button></li>
+                        <li ><button class="layui-btn layui-btn-normal" data-id="2">Level 2</button></li>
+                        <li ><button class="layui-btn layui-btn-normal" data-id="3">Level 3</button></li>
+                        <li ><button class="layui-btn layui-btn-normal" data-id="4">Level 4</button></li>
+                        <li ><button class="layui-btn layui-btn-normal" data-id="5">Level 5</button></li>
+                        <li ><button class="layui-btn layui-btn-normal" data-id="6">Level 6</button></li>
+                    </ul>
                 </div>
             </div>
             

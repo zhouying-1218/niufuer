@@ -24,7 +24,26 @@ $(function(){
     var btnupdate=document.querySelector('#update');
 
     btnupdate.addEventListener('click',function(){ 
-       //从后台得到处理后的图片的url并显示，因没有后台数据就先用settimeout模拟
+       //从后台得到处理后的图片的url并显示，因没有后台数据就先用settimeout模拟]
+      var btns=document.querySelectorAll('.layui-btn');
+      var that=null;
+      for(var j=0;j<btns.length;j++){
+          
+          that=btns[0];
+          btns[j].addEventListener('mousedown',function(){
+              
+              this.style.backgroundColor='#009688';
+              if(that!==this){
+              that.style.backgroundColor='#1E9FFF'
+              that=this;
+              var pic=that.getAttribute('data-id');
+              document.querySelector('#result').src='img/'+pic+'.jpg';
+              }
+              
+
+
+          })
+      }
        setTimeout(function(){
         //var reader = new FileReader();
         // 通过四种方式读取文件
@@ -42,10 +61,10 @@ $(function(){
             //console.log(this.result);
             //查看文件内容字节大小
             //console.log(new Blob([this.result]))
-
-            document.querySelector('#result').src='img/结果.jpg';
+            btns[0].style.backgroundColor='#009688';
+            document.querySelector('#result').src='img/1.jpg';
         }
-    ,2500);
+    ,3000);
         } 
           
 )
@@ -84,5 +103,7 @@ $(function(){
           type: "image/"+ext
         };
       }
+
+      
     
 })

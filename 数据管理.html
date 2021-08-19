@@ -23,6 +23,9 @@
     #form1,#form2{
         padding:20px 30px 0 0;
     }
+    #file{
+      display: none;
+    }
     </style>
     <title>Document</title>
 </head>
@@ -61,5 +64,153 @@
             </table>              
         </div>
       </div>
+      <script type="text/html" id="tpl">
+        {{each data}}
+          <tr>
+            <td>{{$value.name}}</td>
+            <td>{{$value.size}}</td>
+            <td>{{$value.time}}</td>
+            <td>
+                <button type="button" class="layui-btn layui-btn-xs" id="btnupdate" data-id="{{$value.id}}">编辑</button>
+                <button type="button" class="layui-btn layui-btn-xs  layui-btn-danger btn-delete" data-id="{{$value.id}}">删除</button>
+            </td>
+          </tr>
+        {{/each}}
+      </script>
+      <script type="text/html" id="addpic">
+        <form class="layui-form" action="" id="form1">
+            <div class="layui-form-item">
+              <label class="layui-form-label">影像名</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" id="a1" required  placeholder="" autocomplete="off" class="layui-input" disabled="true">
+              </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分辨率大小</label>
+                <div class="layui-input-block">
+                  <input type="text" name="size" id="a2" required  placeholder="" autocomplete="off" class="layui-input" disabled="true">
+                </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">影像展示</label>
+                <div class="layui-input-block">
+                  <img id="image"  width="200px" height="200px">
+                </div>
+                <input type="file" id="file">
+          </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn"  id="btnchoose">选择影像</button>
+                  <button class="layui-btn" id="btnyes">上传</button>
+                </div>
+            </div>
+        </form>
+      </script>
+
+  
+      <script src="./layui/layui.all.js"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="./template-web.js"></script>
+      <script>
+        var res={data:[{
+              id:1,
+              name:'1.tif',
+              size:'400X400',
+              time:'2021-8-15 23:12:34'
+              },
+              { id:2,
+                name:'2.tif',
+                size:'300X300',
+                time:'2021-8-15 23:18:12'
+              },
+              { id:3,
+                name:'3.tif',
+                size:'200X200',
+                time:'2021-8-15 23:28:45'
+              },
+              { id:4,
+                name:'4.tif',
+                size:'200X200',
+                time:'2021-8-17 10:46:15'
+              },
+              { id:5,
+                name:'5.tif',
+                size:'300X300',
+                time:'2021-8-17 13:20:50'
+          }]};
+          function init(res){ 
+              
+              var htmlstr=template('tpl',res);
+              $('tbody').html(htmlstr);
+          }
+          init(res);
+          var index=null;
+          var btnaddcate=document.querySelector('#btnaddcate');
+          btnaddcate.addEventListener('click',function(){ 
+          index=layui.layer.open({ 
+              title: '添加文章分类',
+              content: $('#addpic').html(),
+              type:1,
+              area:['600px','450px']
+
+              
+            })
+          });
+          $('body').on('click','#btnchoose',function(e){
+            e.preventDefault(); 
+              $('#file').click();
+          });
+          $('body').on('change','#file',function(e){ 
+            var files=e.target.files;
+
+            if(files.length===0){ 
+                return layui.layer.msg('请选择照片！！');
+            }
+            var file = e.target.files[0];
+            var newImgURL = URL.createObjectURL(file);
+            //console.log(newImgURL)
+            document.querySelector('#image').src=newImgURL;
+            var data={
+                id:6,
+                name:'6.tif',
+                size:'300X300',
+                time:'2021-8-18 11:20:04'};
+            $('#a1').val(data.name);
+            $('#a2').val(data.size);
+          })
+          $('body').on('click','#btnyes',function(e){ 
+            e.preventDefault();
+            var data={
+                id:6,
+                name:'6.tif',
+                size:'300X300',
+                time:'2021-8-18 11:20:04'};
+
+            res.data.push(data);
+            console.log(res.data);
+            init(res);
+            layui.layer.msg('添加影像成功！');
+            layui.layer.close(index);
+          });
+          $('tbody').on('click','.btn-delete',function(e){ 
+              e.preventDefault();
+              var id=$(this).attr('data-id');
+              //console.log(id);
+              layui.layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+                  var data=res.data.filter(function(item){
+                      return id!=item.id;
+                  })
+                  console.log(id);
+                  var res1={data:data};
+                  console.log(res.data,res1);
+                  layui.layer.close(index);
+                  init(res1);
+                });
+          })
+
+
+
+
+      </script>
 </body>
 </html>
